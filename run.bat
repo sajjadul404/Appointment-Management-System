@@ -1,10 +1,10 @@
 @echo off
 REM =========================================================
-REM NESTORA - build and run (Windows)
+REM MY HOME - build and run (Windows)
 REM Double-click this file, or run it from cmd/PowerShell.
 REM =========================================================
 
-echo Compiling NESTORA...
+echo Compiling MY HOME...
 if not exist out mkdir out
 
 setlocal enabledelayedexpansion
@@ -20,8 +20,8 @@ if errorlevel 1 (
 )
 
 echo.
-echo Starting NESTORA...
+echo Starting MY HOME...
 echo.
-java -cp out com.nestora.Main
+java -cp out com.myhome.Main
 
 pause

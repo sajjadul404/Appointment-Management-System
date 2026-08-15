@@ -1,10 +1,10 @@
 #!/bin/bash
 # =========================================================
-# NESTORA - build and run (macOS / Linux)
+# MY HOME - build and run (macOS / Linux)
 # Usage: ./run.sh
 # =========================================================
 
-echo "Compiling NESTORA..."
+echo "Compiling MY HOME..."
 mkdir -p out
 javac -d out $(find src -name "*.java")
 
@@ -15,6 +15,6 @@ if [ $? -ne 0 ]; then
 fi
 
 echo ""
-echo "Starting NESTORA..."
+echo "Starting MY HOME..."
 echo ""
-java -cp out com.nestora.Main
+java -cp out com.myhome.Main
