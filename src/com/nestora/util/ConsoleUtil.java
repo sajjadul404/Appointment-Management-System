@@ -6,29 +6,74 @@ import java.util.Scanner;
 /**
  * ConsoleUtil
  * -----------
- * All console I/O goes through here: reading input, printing menus,
- * headers, tables and messages -- kept consistent so every screen in the
- * app looks and behaves the same way.
+ * All console I/O goes through here. Screens are drawn with Unicode
+ * box-drawing borders and ANSI colors so the terminal looks like a real
+ * app instead of a wall of plain text. Colors auto-disable if the NO_COLOR
+ * environment variable is set (https://no-color.org), and every visual
+ * gracefully degrades to plain characters if colors somehow don't render.
  */
 public final class ConsoleUtil {
 
     private static final Scanner SCANNER = new Scanner(System.in);
-    private static final String LINE = "=".repeat(60);
-    private static final String THIN_LINE = "-".repeat(60);
+
+    // ---------------------------------------------------------------
+    // COLOR / STYLE (ANSI escape codes)
+    // ---------------------------------------------------------------
+    private static final boolean COLOR = System.getenv("NO_COLOR") == null;
+
+    private static final String RESET  = COLOR ? "\u001B[0m" : "";
+    private static final String BOLD   = COLOR ? "\u001B[1m" : "";
+
+    private static final String CYAN    = COLOR ? "\u001B[36m" : "";
+    private static final String MAGENTA = COLOR ? "\u001B[35m" : "";
+    private static final String BLUE    = COLOR ? "\u001B[34m" : "";
+    private static final String GREEN   = COLOR ? "\u001B[32m" : "";
+    private static final String YELLOW  = COLOR ? "\u001B[33m" : "";
+    private static final String RED     = COLOR ? "\u001B[31m" : "";
+    private static final String GRAY    = COLOR ? "\u001B[90m" : "";
+    private static final String WHITE   = COLOR ? "\u001B[97m" : "";
+
+    // ---------------------------------------------------------------
+    // BOX DRAWING
+    // ---------------------------------------------------------------
+    private static final int BOX_WIDTH = 58; // visible text width between the two borders
 
     private ConsoleUtil() {
     }
 
+    private static String padRight(String text, int width) {
+        if (text.length() >= width) {
+            return text.substring(0, width);
+        }
+        return text + " ".repeat(width - text.length());
+    }
+
+    private static void boxTop(String color) {
+        System.out.println(color + "\u250C" + "\u2500".repeat(BOX_WIDTH + 2) + "\u2510" + RESET);
+    }
+
+    private static void boxDivider(String color) {
+        System.out.println(color + "\u251C" + "\u2500".repeat(BOX_WIDTH + 2) + "\u2524" + RESET);
+    }
+
+    private static void boxBottom(String color) {
+        System.out.println(color + "\u2514" + "\u2500".repeat(BOX_WIDTH + 2) + "\u2518" + RESET);
+    }
+
+    private static void boxLine(String borderColor, String text, String textColor) {
+        System.out.println(borderColor + "\u2502 " + RESET + textColor + padRight(text, BOX_WIDTH)
+                + RESET + borderColor + " \u2502" + RESET);
+    }
+
     // ---------------------------------------------------------------
-    // OUTPUT
+    // SCREEN CONTROL
     // ---------------------------------------------------------------
 
     /**
      * Actually clears the terminal window (not just blank lines) so each
      * new screen starts fresh. Uses "cls" on Windows and "clear" on
-     * macOS/Linux. If that's not possible for some reason (e.g. output is
-     * being redirected to a file), it falls back to printing enough blank
-     * lines to push old content out of view.
+     * macOS/Linux. Falls back to blank-line padding if that isn't possible
+     * (e.g. output redirected to a file).
      */
     public static void clearScreen() {
         try {
@@ -44,47 +89,76 @@ public final class ConsoleUtil {
         }
     }
 
+    // ---------------------------------------------------------------
+    // OUTPUT
+    // ---------------------------------------------------------------
     public static void printBanner() {
-        System.out.println(LINE);
-        System.out.println("   MY HOME   -   Apartment Management System");
-        System.out.println("   \"Smart Living. Seamless Community.\"");
-        System.out.println(LINE);
+        System.out.println();
+        boxTop(CYAN);
+        boxLine(CYAN, centered("N E S T O R A"), BOLD + WHITE);
+        boxLine(CYAN, centered("Smart Living. Seamless Community."), CYAN);
+        boxBottom(CYAN);
     }
 
+    private static String centered(String text) {
+        int pad = Math.max(0, (BOX_WIDTH - text.length()) / 2);
+        return " ".repeat(pad) + text;
+    }
+
+    /** A boxed screen title used above a block of info/detail content. */
     public static void printHeader(String title) {
         System.out.println();
-        System.out.println(LINE);
-        System.out.println("  " + title.toUpperCase());
-        System.out.println(LINE);
+        boxTop(MAGENTA);
+        boxLine(MAGENTA, title.toUpperCase(), BOLD + WHITE);
+        boxBottom(MAGENTA);
     }
 
+    /** A lighter section title used inside a screen (e.g. "My Profile"). */
     public static void printSubHeader(String title) {
         System.out.println();
-        System.out.println(THIN_LINE);
-        System.out.println("  " + title);
-        System.out.println(THIN_LINE);
+        System.out.println(BLUE + BOLD + "  \u25B8 " + title + RESET);
+        System.out.println(GRAY + "  " + "\u2500".repeat(title.length() + 2) + RESET);
     }
 
+    /** A boxed, numbered menu the user picks an option from. */
     public static void printMenu(String title, List<String> options) {
-        printHeader(title);
+        System.out.println();
+        boxTop(CYAN);
+        boxLine(CYAN, title.toUpperCase(), BOLD + WHITE);
+        boxDivider(CYAN);
         for (int i = 0; i < options.size(); i++) {
-            System.out.println("  [" + (i + 1) + "] " + options.get(i));
+            boxLine(CYAN, "  [" + (i + 1) + "]  " + options.get(i), WHITE);
         }
-        System.out.println(THIN_LINE);
+        boxBottom(CYAN);
     }
 
     public static void printSuccess(String message) {
-        System.out.println("  \u2714  " + message);
+        System.out.println(GREEN + "  \u2714  " + message + RESET);
     }
 
     public static void printError(String message) {
-        System.out.println("  \u2716  " + message);
+        System.out.println(RED + "  \u2716  " + message + RESET);
     }
 
     public static void printInfo(String message) {
-        System.out.println("  \u2139  " + message);
+        System.out.println(BLUE + "  \u2139  " + message + RESET);
     }
 
+    public static void printWarning(String message) {
+        System.out.println(YELLOW + "  \u26A0  " + message + RESET);
+    }
+
+    /** A bold table header row, followed by a matching underline. */
+    public static void printTableHeader(String... columns) {
+        StringBuilder sb = new StringBuilder("  ");
+        for (String col : columns) {
+            sb.append(String.format("%-18s", col));
+        }
+        System.out.println(BOLD + WHITE + sb + RESET);
+        System.out.println(GRAY + "  " + "\u2500".repeat(Math.min(sb.length() - 2, 90)) + RESET);
+    }
+
+    /** A plain data row aligned under printTableHeader's columns. */
     public static void printRow(String... columns) {
         StringBuilder sb = new StringBuilder("  ");
         for (String col : columns) {
@@ -92,6 +166,10 @@ public final class ConsoleUtil {
         }
         System.out.println(sb);
     }
+
+    // ---------------------------------------------------------------
+    // INPUT
+    // ---------------------------------------------------------------
 
     /**
      * Thrown when the user types "back" at a form field, so any multi-step
@@ -101,11 +179,8 @@ public final class ConsoleUtil {
     public static class BackSignal extends RuntimeException {
     }
 
-    // ---------------------------------------------------------------
-    // INPUT
-    // ---------------------------------------------------------------
     public static String readLine(String prompt) {
-        System.out.print("  " + prompt + ": ");
+        System.out.print(GRAY + "  " + prompt + ": " + RESET);
         return SCANNER.nextLine().trim();
     }
 
@@ -118,7 +193,7 @@ public final class ConsoleUtil {
     public static String readRequired(String prompt) {
         String value;
         do {
-            System.out.print("  " + prompt + " (or type 'back' to cancel): ");
+            System.out.print(GRAY + "  " + prompt + " " + RESET + GRAY + "(or type 'back' to cancel): " + RESET);
             value = SCANNER.nextLine().trim();
             if (value.equalsIgnoreCase("back")) {
                 throw new BackSignal();
@@ -174,7 +249,7 @@ public final class ConsoleUtil {
      * doesn't actually work.
      */
     public static String readPassword(String prompt) {
-        System.out.print("  " + prompt + " (or type 'back' to cancel): ");
+        System.out.print(GRAY + "  " + prompt + " " + RESET + GRAY + "(or type 'back' to cancel): " + RESET);
         String value = SCANNER.nextLine().trim();
         if (value.equalsIgnoreCase("back")) {
             throw new BackSignal();
@@ -183,7 +258,7 @@ public final class ConsoleUtil {
     }
 
     public static void pause() {
-        System.out.print("  Press ENTER to continue...");
+        System.out.print(GRAY + "  Press ENTER to continue..." + RESET);
         SCANNER.nextLine();
         clearScreen();
     }

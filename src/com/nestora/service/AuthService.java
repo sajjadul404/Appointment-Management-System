@@ -3,6 +3,7 @@ package com.nestora.service;
 import com.nestora.dao.UserDAO;
 import com.nestora.model.User;
 import com.nestora.util.PasswordUtil;
+
 import java.util.Optional;
 
 /**
@@ -44,11 +45,11 @@ public class AuthService {
         return RegisterResult.SUCCESS;
     }
 
-    /** Seeds a default admin account the first time the app runs (email: admin@myhome.com / pass: admin123). */
+    /** Seeds a default admin account the first time the app runs (email: admin@nestora.com / pass: admin123). */
     public void ensureDefaultAdmin() {
         if (userDAO.findByRole("ADMIN").isEmpty()) {
             User admin = new User(
-                    userDAO.nextId(), "System Admin", "admin@myhome.com", "0000000000",
+                    userDAO.nextId(), "System Admin", "admin@nestora.com", "0000000000",
                     PasswordUtil.hash("admin123"), "ADMIN", "", true
             );
             userDAO.save(admin);

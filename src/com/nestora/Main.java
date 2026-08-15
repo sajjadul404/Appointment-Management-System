@@ -4,6 +4,7 @@ import com.nestora.dao.*;
 import com.nestora.model.*;
 import com.nestora.service.AuthService;
 import com.nestora.util.ConsoleUtil;
+
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -11,7 +12,7 @@ import java.util.Optional;
 /**
  * Main
  * ----
- * My Home - Apartment Management System (Console Edition)
+ * NESTORA - Apartment Management System (Console Edition)
  *
  * Pure Java, no JavaFX, no Maven, no database server. All data is stored in
  * pipe-delimited .csv files under data/. Run it with:
@@ -19,7 +20,7 @@ import java.util.Optional;
  *   javac -d out $(find src -name "*.java")
  *   java -cp out com.nestora.Main
  *
- * Default admin login: admin@myhome.com / admin123
+ * Default admin login: admin@nestora.com / admin123
  */
 public class Main {
 
@@ -41,7 +42,7 @@ public class Main {
     // =================================================================
     private static void mainMenu() {
         while (true) {
-            ConsoleUtil.printMenu("Welcome to My Home", List.of(
+            ConsoleUtil.printMenu("Welcome to NESTORA", List.of(
                     "Register as Resident",
                     "Login as Resident",
                     "Login as Admin",
@@ -53,7 +54,7 @@ public class Main {
                 case 2 -> safe(() -> loginFlow("RESIDENT"));
                 case 3 -> safe(() -> loginFlow("ADMIN"));
                 case 4 -> {
-                    ConsoleUtil.printInfo("Thank you for using My Home. Goodbye!");
+                    ConsoleUtil.printInfo("Thank you for using NESTORA. Goodbye!");
                     return;
                 }
             }
@@ -199,7 +200,7 @@ public class Main {
         if (complaints.isEmpty()) {
             ConsoleUtil.printInfo("You haven't submitted any complaints yet.");
         } else {
-            ConsoleUtil.printRow("ID", "Category", "Subject", "Status", "Date");
+            ConsoleUtil.printTableHeader("ID", "Category", "Subject", "Status", "Date");
             for (Complaint c : complaints) {
                 ConsoleUtil.printRow(String.valueOf(c.getId()), c.getCategory(), c.getSubject(), c.getStatus(), c.getDate());
             }
@@ -250,7 +251,7 @@ public class Main {
         if (payments.isEmpty()) {
             ConsoleUtil.printInfo("No payments recorded yet.");
         } else {
-            ConsoleUtil.printRow("ID", "Type", "Amount", "Method", "Status", "Date");
+            ConsoleUtil.printTableHeader("ID", "Type", "Amount", "Method", "Status", "Date");
             for (Payment p : payments) {
                 ConsoleUtil.printRow(String.valueOf(p.getId()), p.getType(),
                         String.format("%.2f", p.getAmount()), p.getMethod(), p.getStatus(), p.getDate());
@@ -329,7 +330,7 @@ public class Main {
         if (residents.isEmpty()) {
             ConsoleUtil.printInfo("No residents registered yet.");
         } else {
-            ConsoleUtil.printRow("ID", "Name", "Flat", "Phone", "Status");
+            ConsoleUtil.printTableHeader("ID", "Name", "Flat", "Phone", "Status");
             for (User u : residents) {
                 ConsoleUtil.printRow(String.valueOf(u.getId()), u.getFullName(), u.getFlatNumber(),
                         u.getPhone(), u.isVerified() ? "Verified" : "Pending");
@@ -349,7 +350,7 @@ public class Main {
             return;
         }
 
-        ConsoleUtil.printRow("ID", "Name", "Email", "Flat");
+        ConsoleUtil.printTableHeader("ID", "Name", "Email", "Flat");
         for (User u : pending) {
             ConsoleUtil.printRow(String.valueOf(u.getId()), u.getFullName(), u.getEmail(), u.getFlatNumber());
         }
@@ -388,7 +389,7 @@ public class Main {
                 if (apartments.isEmpty()) {
                     ConsoleUtil.printInfo("No apartments added yet.");
                 } else {
-                    ConsoleUtil.printRow("ID", "Building", "Block", "Flat", "Status");
+                    ConsoleUtil.printTableHeader("ID", "Building", "Block", "Flat", "Status");
                     for (Apartment a : apartments) {
                         ConsoleUtil.printRow(String.valueOf(a.getId()), a.getBuilding(), a.getBlock(),
                                 a.getFlatNumber(), a.getStatus());
@@ -421,7 +422,7 @@ public class Main {
         if (complaints.isEmpty()) {
             ConsoleUtil.printInfo("No complaints submitted yet.");
         } else {
-            ConsoleUtil.printRow("ID", "Resident", "Category", "Subject", "Status");
+            ConsoleUtil.printTableHeader("ID", "Resident", "Category", "Subject", "Status");
             for (Complaint c : complaints) {
                 ConsoleUtil.printRow(String.valueOf(c.getId()), c.getResidentEmail(),
                         c.getCategory(), c.getSubject(), c.getStatus());
@@ -438,7 +439,7 @@ public class Main {
             ConsoleUtil.pause();
             return;
         }
-        ConsoleUtil.printRow("ID", "Subject", "Status");
+        ConsoleUtil.printTableHeader("ID", "Subject", "Status");
         for (Complaint c : complaints) {
             ConsoleUtil.printRow(String.valueOf(c.getId()), c.getSubject(), c.getStatus());
         }
@@ -486,7 +487,7 @@ public class Main {
         if (payments.isEmpty()) {
             ConsoleUtil.printInfo("No payments recorded yet.");
         } else {
-            ConsoleUtil.printRow("ID", "Resident", "Type", "Amount", "Status", "Date");
+            ConsoleUtil.printTableHeader("ID", "Resident", "Type", "Amount", "Status", "Date");
             for (Payment p : payments) {
                 ConsoleUtil.printRow(String.valueOf(p.getId()), p.getResidentEmail(), p.getType(),
                         String.format("%.2f", p.getAmount()), p.getStatus(), p.getDate());
