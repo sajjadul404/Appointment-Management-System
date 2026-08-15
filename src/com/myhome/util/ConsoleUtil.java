@@ -95,7 +95,7 @@ public final class ConsoleUtil {
     public static void printBanner() {
         System.out.println();
         boxTop(CYAN);
-        boxLine(CYAN, centered("N E S T O R A"), BOLD + WHITE);
+        boxLine(CYAN, centered("MY HOME"), BOLD + WHITE);
         boxLine(CYAN, centered("Smart Living. Seamless Community."), CYAN);
         boxBottom(CYAN);
     }
