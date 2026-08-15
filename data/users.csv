@@ -1,2 +1,3 @@
 id|fullName|email|phone|passwordHash|role|flatNumber|verified
-1|System Admin|admin@myhome.com|0000000000|240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9|ADMIN||Y
+1|System Admin|admin@myhome.com|0000000000|B1-3F-302|ADMIN||Y
+2|Sajjadul Islam|sajjaduli724@gmail.com|01560060092|B1-5F-501|RESIDENT|B1-5F-501|Y
