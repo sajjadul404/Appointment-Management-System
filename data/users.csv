@@ -1,3 +1,5 @@
 id|fullName|email|phone|passwordHash|role|flatNumber|verified
-1|System Admin|admin@myhome.com|0000000000|B1-3F-302|ADMIN||Y
-2|Sajjadul Islam|sajjaduli724@gmail.com|01560060092|B1-5F-501|RESIDENT|B1-5F-501|Y
+1|System Admin|admin@myhome.com|0000000000|240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9|ADMIN||Y
+2|Sajjadul Islam|sajjaduli724@gmail.com|01560060092|ec446ffb32fd0b475a58e8e384d5fbb63c4eb7c9625ccbc5f567d025559b8cea|RESIDENT|B1-5F-501|Y
+3|Tonima Nasir|nu001290@gmail.com|01896135232|b8a9c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4|RESIDENT|B1-5F-502|Y
+4|Sajidul Islam|sajidul@gmail.com|01748184903|d12679eef4f09341bb2dc5f6ac6d2f0db27b3f7f4aa895360f36a34f053345c3|RESIDENT|B1-C-401|Y
