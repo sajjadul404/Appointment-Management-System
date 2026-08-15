@@ -12,7 +12,7 @@ import java.util.Optional;
 /**
  * Main
  * ----
- * NESTORA - Apartment Management System (Console Edition)
+ * My Home - Apartment Management System (Console Edition)
  *
  * Pure Java, no JavaFX, no Maven, no database server. All data is stored in
  * pipe-delimited .csv files under data/. Run it with:
@@ -20,7 +20,7 @@ import java.util.Optional;
  *   javac -d out $(find src -name "*.java")
  *   java -cp out com.nestora.Main
  *
- * Default admin login: admin@nestora.com / admin123
+ * Default admin login: admin@myhome.com / admin123
  */
 public class Main {
 
@@ -42,7 +42,7 @@ public class Main {
     // =================================================================
     private static void mainMenu() {
         while (true) {
-            ConsoleUtil.printMenu("Welcome to NESTORA", List.of(
+            ConsoleUtil.printMenu("Welcome to My Home", List.of(
                     "Register as Resident",
                     "Login as Resident",
                     "Login as Admin",
@@ -54,7 +54,7 @@ public class Main {
                 case 2 -> safe(() -> loginFlow("RESIDENT"));
                 case 3 -> safe(() -> loginFlow("ADMIN"));
                 case 4 -> {
-                    ConsoleUtil.printInfo("Thank you for using NESTORA. Goodbye!");
+                    ConsoleUtil.printInfo("Thank you for using My Home. Goodbye!");
                     return;
                 }
             }

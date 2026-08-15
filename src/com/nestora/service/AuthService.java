@@ -49,7 +49,7 @@ public class AuthService {
     public void ensureDefaultAdmin() {
         if (userDAO.findByRole("ADMIN").isEmpty()) {
             User admin = new User(
-                    userDAO.nextId(), "System Admin", "admin@nestora.com", "0000000000",
+                    userDAO.nextId(), "System Admin", "admin@myhome.com", "01560060092",
                     PasswordUtil.hash("admin123"), "ADMIN", "", true
             );
             userDAO.save(admin);
