@@ -4,7 +4,6 @@ import com.myhome.dao.*;
 import com.myhome.model.*;
 import com.myhome.service.AuthService;
 import com.myhome.util.ConsoleUtil;
-
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -503,11 +502,7 @@ public class Main {
         return LocalDate.now().toString();
     }
 
-    /**
-     * Runs a menu action, and if the user typed "back" at any field inside
-     * it (ConsoleUtil.BackSignal), cancels cleanly and returns to whichever
-     * menu called it instead of crashing or forcing the form to finish.
-     */
+
     private static void safe(Runnable action) {
         try {
             action.run();
