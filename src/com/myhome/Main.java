@@ -10,15 +10,7 @@ import java.util.Optional;
 
 /**
  * Main
- * ----
- * MY HOME - Apartment Management System (Console Edition)
- *
- * Pure Java, no JavaFX, no Maven, no database server. All data is stored in
- * pipe-delimited .csv files under data/. Run it with:
- *
- *   javac -d out $(find src -name "*.java")
- *   java -cp out com.myhome.Main
- *
+ * MY HOME - Apartment Management System
  * Default admin login: admin@myhome.com / admin123
  */
 public class Main {
