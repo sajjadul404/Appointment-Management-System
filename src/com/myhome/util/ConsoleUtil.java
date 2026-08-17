@@ -164,12 +164,7 @@ public final class ConsoleUtil {
         return SCANNER.nextLine().trim();
     }
 
-    /**
-     * Non-empty text input; keeps asking until something is typed.
-     * Typing "back" (any case) at this prompt cancels the current screen
-     * and throws BackSignal, which the calling menu catches to return
-     * safely to where the user came from.
-     */
+
     public static String readRequired(String prompt) {
         String value;
         do {
