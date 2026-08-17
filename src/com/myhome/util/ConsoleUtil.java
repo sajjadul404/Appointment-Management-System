@@ -212,17 +212,8 @@ public final class ConsoleUtil {
         }
     }
 
-    /**
-     * Reads a password.
-     *
-     * Note: this intentionally always goes through the same Scanner as
-     * every other prompt (not java.io.Console). Mixing Console.readPassword()
-     * with a Scanner on System.in causes the two to fight over the input
-     * buffer -- on many Windows terminals and IDE run windows that makes
-     * password input appear to hang or silently drop keystrokes. Typing
-     * the password visibly, reliably, is better than a masked prompt that
-     * doesn't actually work.
-     */
+     // Reads a password.
+  
     public static String readPassword(String prompt) {
         System.out.print(GRAY + "  " + prompt + " " + RESET + GRAY + "(or type 'back' to cancel): " + RESET);
         String value = SCANNER.nextLine().trim();
