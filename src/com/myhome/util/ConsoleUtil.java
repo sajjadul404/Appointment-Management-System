@@ -60,12 +60,6 @@ public final class ConsoleUtil {
     // SCREEN CONTROL
     // ---------------------------------------------------------------
 
-    /**
-     * Actually clears the terminal window (not just blank lines) so each
-     * new screen starts fresh. Uses "cls" on Windows and "clear" on
-     * macOS/Linux. Falls back to blank-line padding if that isn't possible
-     * (e.g. output redirected to a file).
-     */
     public static void clearScreen() {
         try {
             String os = System.getProperty("os.name").toLowerCase();
