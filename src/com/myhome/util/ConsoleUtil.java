@@ -3,15 +3,6 @@ package com.myhome.util;
 import java.util.List;
 import java.util.Scanner;
 
-/**
- * ConsoleUtil
- * -----------
- * All console I/O goes through here. Screens are drawn with Unicode
- * box-drawing borders and ANSI colors so the terminal looks like a real
- * app instead of a wall of plain text. Colors auto-disable if the NO_COLOR
- * environment variable is set (https://no-color.org), and every visual
- * gracefully degrades to plain characters if colors somehow don't render.
- */
 public final class ConsoleUtil {
 
     private static final Scanner SCANNER = new Scanner(System.in);
