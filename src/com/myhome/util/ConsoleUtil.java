@@ -156,11 +156,6 @@ public final class ConsoleUtil {
     // INPUT
     // ---------------------------------------------------------------
 
-    /**
-     * Thrown when the user types "back" at a form field, so any multi-step
-     * screen (registration, login, submitting a complaint, etc.) can be
-     * cancelled cleanly and control returns to the calling menu.
-     */
     public static class BackSignal extends RuntimeException {
     }
 
