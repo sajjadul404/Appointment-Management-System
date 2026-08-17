@@ -4,7 +4,7 @@
 # Usage: ./run.sh
 # =========================================================
 
-echo "Compiling MY HOME..."
+echo ""
 mkdir -p out
 javac -d out $(find src -name "*.java")
 
@@ -15,6 +15,6 @@ if [ $? -ne 0 ]; then
 fi
 
 echo ""
-echo "Starting MY HOME..."
+echo ""
 echo ""
 java -cp out com.myhome.Main
