@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Main
  * MY HOME - Apartment Management System
  * Default admin login: admin@myhome.com / admin123
  */
