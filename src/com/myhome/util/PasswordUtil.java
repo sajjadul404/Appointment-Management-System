@@ -7,12 +7,6 @@ import java.util.HexFormat;
 
 /**
  * PasswordUtil
- * ------------
- * Hashes passwords with SHA-256 before they ever touch a CSV file, so plain
- * text passwords are never stored. (For a real production system you'd want
- * a salted, slow hash like BCrypt/Argon2 -- SHA-256 here keeps the project
- * dependency-free while still meeting the "never store plain text
- * passwords" requirement.)
  */
 public final class PasswordUtil {
 
