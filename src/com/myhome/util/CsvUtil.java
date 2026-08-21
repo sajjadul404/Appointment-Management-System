@@ -11,14 +11,6 @@ import java.util.List;
 
 /**
  * CsvUtil
- * -------
- * Tiny, dependency-free helper for reading/writing pipe-delimited ".csv"
- * files under the data/ folder. A pipe ("|") is used instead of a comma so
- * that free-text fields (descriptions, notice bodies, etc.) don't need
- * quoting/escaping logic -- just avoid typing "|" in text input.
- *
- * Every data file has a header row (skipped on read, written once on
- * creation) so the files stay human-readable if you open them directly.
  */
 public final class CsvUtil {
 
