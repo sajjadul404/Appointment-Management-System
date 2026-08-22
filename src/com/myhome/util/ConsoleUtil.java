@@ -27,7 +27,7 @@ public final class ConsoleUtil {
     // ---------------------------------------------------------------
     // BOX DRAWING
     // ---------------------------------------------------------------
-    private static final int BOX_WIDTH = 58; // visible text width between the two borders
+    private static final int BOX_WIDTH = 58;
 
     private ConsoleUtil() {
     }
