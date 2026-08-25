@@ -2,8 +2,6 @@ package com.myhome.model;
 
 /**
  * Notice
- * ------
- * A notice-board post created by the Admin and visible to all residents.
  */
 public class Notice {
 
