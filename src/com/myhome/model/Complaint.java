@@ -2,8 +2,6 @@ package com.myhome.model;
 
 /**
  * Complaint
- * ---------
- * A Help Desk ticket raised by a resident.
  */
 public class Complaint {
 
