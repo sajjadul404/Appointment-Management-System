@@ -2,8 +2,6 @@ package com.myhome.model;
 
 /**
  * Apartment
- * ---------
- * A single flat/unit in the building, managed by the Admin.
  */
 public class Apartment {
 
