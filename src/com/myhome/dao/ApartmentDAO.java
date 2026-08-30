@@ -8,9 +8,6 @@ import java.util.List;
 
 /**
  * ApartmentDAO
- * --------
- * data/apartments.csv — building/block/floor/flat inventory managed by Admin.
- * Columns: id|building|block|floor|flatNumber|size|status
  */
 public class ApartmentDAO {
 
