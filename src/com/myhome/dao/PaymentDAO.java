@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * PaymentDAO
- * ----------
+ * --------
  * data/payments.csv — simulated rent/utility/maintenance payments.
  * Columns: id|residentEmail|type|amount|method|status|date|transactionId
  */
