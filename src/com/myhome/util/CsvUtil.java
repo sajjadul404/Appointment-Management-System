@@ -14,7 +14,7 @@ import java.util.List;
  */
 public final class CsvUtil {
 
-    public static final String DELIMITER = "\\|"; // regex form, for split()
+    public static final String DELIMITER = "\\|";
     public static final String DELIMITER_RAW = "|";
 
     private CsvUtil() {
