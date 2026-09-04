@@ -8,7 +8,7 @@ public final class ConsoleUtil {
     private static final Scanner SCANNER = new Scanner(System.in);
 
     // ---------------------------------------------------------------
-    // COLOR / STYLE (ANSI escape codes)
+    // COLOR / STYLE
     // ---------------------------------------------------------------
     private static final boolean COLOR = System.getenv("NO_COLOR") == null;
 
