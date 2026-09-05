@@ -8,6 +8,8 @@ import java.util.Optional;
 
 /**
  * AuthService
+ * ------
+ * Registration and login rules live here, on top of UserDAO. Passwords are
  * always hashed (see PasswordUtil) before they reach the CSV file.
  */
 public class AuthService {
