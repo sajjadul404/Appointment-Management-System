@@ -11,7 +11,7 @@ public class Apartment {
     private String floor;
     private String flatNumber;
     private String size;
-    private String status; // OCCUPIED, VACANT, MAINTENANCE
+    private String status;
 
     public Apartment(int id, String building, String block, String floor,
                       String flatNumber, String size, String status) {
